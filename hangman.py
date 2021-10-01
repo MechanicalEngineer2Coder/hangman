@@ -1,6 +1,13 @@
 import random
 
 def hangman():
+    #Game intro
+    name = input("Enter your name: ")
+    print("Welcome ", name)
+    print("---------------")
+    print("Try to guess the word in less than 10 attempts.")
+    
+    #Game setup
     word = random.choice(["pugger", "littlepugger", "tiger", "superman", "thor", "pokemon"])
     validLetters = "abcdefghijklmnopqrstuvwxyz"
     turns = 10
@@ -8,12 +15,15 @@ def hangman():
 
     while len(word)>0:
         main = ""
-        missed = 0
+
+        #Checks each letter in word for match. Initial run sets up all dash marks
         for letter in word:
             if letter in guessMade:
-                main = main + letter
+                main += letter
             else:
-                main = main + "_" + ""
+                main += "_" + ""
+
+        #Checks if game is won and stops progam if match. If not it ask for next guess
         if main == word:
             print(main)
             print("You win!")
@@ -21,74 +31,71 @@ def hangman():
         print("Guess the word: ", main)
         guess = input()
 
+        #Checks if guessed letter is a letter. If not user has to retry
         if guess in validLetters:
-            guessMade = guessMade + guess
+            guessMade += guess
         else:
-            print("Enter a valid character")
-            guess = input()
+            guess = input("Enter a valid character: ")
+
+        #If user guesses incorrectly, turns left is reduced and visual given
         if guess not in word:
-            turns = turns - 1
+            turns -= 1
             if turns == 9:
-                print("9 turns left")
+                print("Wrong. 9 turns left")
                 print (" ------ ")
             if turns == 8:
-                print("8 turns left")
+                print("Wrong. 8 turns left")
                 print(" ------ ")
-                print("   0    ")
+                print("   0    \n")
             if turns == 7:
-                print("7 turns left")
+                print("Wrong. 7 turns left")
                 print(" ------ ")
                 print("   0    ")
-                print("   |    ")
+                print("   |    \n")
             if turns == 6:
-                print("6 turns left")
+                print("Wrong. 6 turns left")
                 print(" ------ ")
                 print("   0    ")
                 print("   |    ")
-                print("  /     ")
+                print("  /     \n")
             if turns == 5:
-                print("5 turns left")
+                print("Wrong. 5 turns left")
                 print(" ------ ")
                 print("   0    ")
                 print("   |    ")
-                print("  / \   ")
+                print("  / \   \n")
             if turns == 4:
-                print("4 turns left")
+                print("Wrong. 4 turns left")
                 print(" ------ ")
                 print(" \ 0    ")
                 print("   |    ")
-                print("  / \   ")
+                print("  / \   \n")
             if turns == 3:
-                print("3 turns left")
+                print("Wrong. 3 turns left")
                 print(" ------ ")
                 print(" \ 0 /  ")
                 print("   |    ")
-                print("  / \   ")
+                print("  / \   \n")
             if turns == 2:
                 print("2 turns left")
                 print(" ------ ")
                 print(" \ 0 /|  ")
                 print("   |    ")
-                print("  / \   ")
+                print("  / \   \n")
             if turns == 1:
-                print("1 turn left")
+                print("Wrong. 1 turn left")
                 print(" ------ ")
                 print(" \ 0_|/ ")
                 print("   |    ")
-                print("  / \   ")
+                print("  / \   \n")
             if turns == 0:
-                print("Your lose")
+                print("You lose")
                 print(" ------ ")
                 print("   0_| ")
                 print("  /|\   ")
-                print("  / \   ")
+                print("  / \   \n")
                 break
             
 
-
-name = input("Enter your name: ")
-print("Welcome ", name)
-print("---------------")
-print("Try to guess the word in less than 10 attempts.")
 hangman()
 
